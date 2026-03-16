@@ -1,0 +1,2807 @@
+{
+  "metadata": {
+    "scanned_files": [
+      "samples/alu.v",
+      "samples/bad_fifo.v",
+      "samples/cdc_hazards.v",
+      "samples/good_counter.v",
+      "samples/good_uart_rx.v",
+      "samples/mem_ctrl.v",
+      "samples/pipeline_hazards.v",
+      "samples/pwm_controller.v",
+      "samples/security_ctrl.v",
+      "samples/spi_master.v",
+      "samples/uart_tx.v"
+    ],
+    "elapsed_s": 0.0514,
+    "total_findings": 278
+  },
+  "summary": {
+    "ERROR": 50,
+    "WARNING": 90,
+    "INFO": 138
+  },
+  "findings": [
+    {
+      "file": "samples/alu.v",
+      "line": 39,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h0: alu_out = a + b;     // VLG013: blocking in clocked block",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 40,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h1: alu_out = a - b;     // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 41,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h2: alu_out = a & b;     // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 42,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h3: alu_out = a | b;     // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 43,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h4: alu_out = a ^ b;     // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 44,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h5: alu_out = ~a;        // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 45,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h6: alu_out = a << b[4:0]; // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 46,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h7: alu_out = a >> b[4:0]; // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 47,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h8: alu_out = a <<< b[4:0];// VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 48,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'h9: alu_out = a >>> b[4:0];// VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 49,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'hA: alu_out = (a < b)  ? 32'd1 : 32'd0; // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 50,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "4'hB: alu_out = ($signed(a) < $signed(b)) ? 32'd1 : 32'd0; // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 58,
+      "rule_id": "VLG017",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "'case' statement missing 'default' in combinational block — latch inferred",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add 'default: <output> = <safe_value>;' to every case statement."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 76,
+      "rule_id": "VLG011",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "System task ($display/$monitor/$finish) found in RTL — not synthesizable",
+      "snippet": "$display(\"[ALU] Overflow detected! op=%0h a=%0h b=%0h\", op, a, b); // VLG011",
+      "suggestion": "Move system tasks to a testbench file. Guard RTL with `ifdef SIMULATION if needed."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 82,
+      "rule_id": "VLG006",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "'initial' block found — not synthesizable (simulation-only construct)",
+      "snippet": "initial begin                      // VLG006",
+      "suggestion": "Remove 'initial' block from RTL. Use reset logic in a clocked always block instead."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 92,
+      "rule_id": "VLG035",
+      "severity": "ERROR",
+      "category": "Timing",
+      "description": "Combinational feedback loop detected — signal appears on both LHS and RHS of assign",
+      "snippet": "assign fb_loop = fb_loop ^ alu_out[0];",
+      "suggestion": "'fb_loop' feeds itself — insert a register (flip-flop) to break the loop: use a clocked always block with '<='."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 114,
+      "rule_id": "VLG007",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "Delay (#N) found in RTL — simulation-only, causes sim/synth mismatch",
+      "snippet": "assign #10 dbg_zero = (alu_out == 32'd0);  // VLG007",
+      "suggestion": "Remove all '#delay' constructs from RTL code. Rely on clock edges for timing."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 1,
+      "rule_id": "VLG033",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "`default_nettype none` not set — implicit net declarations risk",
+      "snippet": "No `default_nettype none found in file",
+      "suggestion": "Add '`default_nettype none' at the top of every RTL file before any module."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 7,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'alu' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 15,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "input  [31:0] a;          // VLG002: magic number 31",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 15,
+      "rule_id": "VLG040",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "High fan-out signal (appears >16 times on RHS) — may need buffer tree in synthesis",
+      "snippet": "Signal 'a' used 17 times on RHS (fan-out=17)",
+      "suggestion": "Consider adding 'synthesis keep' attribute or manually buffering 'a' to help the synthesis tool build an optimal buffer tree."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 16,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "input  [31:0] b;          // VLG002: magic number 31",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 17,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "output [31:0] result;     // VLG002: magic number 31",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 20,
+      "rule_id": "VLG031",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "Output port is never driven (assigned) inside the module",
+      "snippet": "output port 'carry_out' is never assigned",
+      "suggestion": "Add 'assign carry_out = <value>;' or drive it from an always block."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 25,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0]    alu_out;    // VLG002",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 30,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0] partial_sum;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 31,
+      "rule_id": "VLG037",
+      "severity": "WARNING",
+      "category": "Timing",
+      "description": "Continuous 'assign' drives a 'reg'-declared signal — use 'wire' instead",
+      "snippet": "assign partial_sum = a + b;",
+      "suggestion": "Change 'reg partial_sum' declaration to 'wire partial_sum' since it's driven by continuous assignment, not a procedural block."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 58,
+      "rule_id": "VLG018",
+      "severity": "WARNING",
+      "category": "Latch",
+      "description": "Output not assigned on all paths in combinational block — possible latch",
+      "snippet": "Signal 'ov_flag' may not be assigned on all paths",
+      "suggestion": "Add default assignment 'ov_flag = <safe_val>;' at the top of the combinational block."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 97,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "wire [31:0] deep_mux;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 17,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'result' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 18,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'zero' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 19,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'overflow' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 25,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0]    alu_out;    // VLG002",
+      "suggestion": "Rename 'alu_out' to follow convention, e.g. r_alu_out (reg) or w_alu_out (wire)."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 26,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg           ov_flag;",
+      "suggestion": "Rename 'ov_flag' to follow convention, e.g. r_ov_flag (reg) or w_ov_flag (wire)."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 27,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg           z_flag;",
+      "suggestion": "Rename 'z_flag' to follow convention, e.g. r_z_flag (reg) or w_z_flag (wire)."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 30,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0] partial_sum;",
+      "suggestion": "Rename 'partial_sum' to follow convention, e.g. r_partial_sum (reg) or w_partial_sum (wire)."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 37,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk) begin        // VLG026: no reset",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 49,
+      "rule_id": "VLG050",
+      "severity": "INFO",
+      "category": "Maintainability",
+      "description": "Same magic constant appears >3 times — extract to parameter / localparam",
+      "snippet": "Literal '32'd0' appears 4 times in module 'alu'",
+      "suggestion": "Replace '32'd0' with a named localparam. Repeated literals are error-prone when specifications change."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 74,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk) begin",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 91,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire fb_loop;",
+      "suggestion": "Rename 'fb_loop' to follow convention, e.g. r_fb_loop (reg) or w_fb_loop (wire)."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 97,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [31:0] deep_mux;",
+      "suggestion": "Rename 'deep_mux' to follow convention, e.g. r_deep_mux (reg) or w_deep_mux (wire)."
+    },
+    {
+      "file": "samples/alu.v",
+      "line": 113,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire dbg_zero;",
+      "suggestion": "Rename 'dbg_zero' to follow convention, e.g. r_dbg_zero (reg) or w_dbg_zero (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 31,
+      "rule_id": "VLG006",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "'initial' block found — not synthesizable (simulation-only construct)",
+      "snippet": "initial begin",
+      "suggestion": "Remove 'initial' block from RTL. Use reset logic in a clocked always block instead."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 42,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "mem[wr_ptr] = data_in;     // VLG013: should be <=",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 43,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "wr_ptr      = wr_ptr + 1;  // VLG013: should be <=",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 44,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "count       = count + 1;   // VLG013: should be <=",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 51,
+      "rule_id": "VLG009",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "Explicit sensitivity list in combinational block — may be incomplete (use always @(*))",
+      "snippet": "always @(wr_ptr, rd_ptr) begin",
+      "suggestion": "Replace explicit sensitivity list with 'always @(*)' or SystemVerilog 'always_comb'."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 60,
+      "rule_id": "VLG016",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "Incomplete 'if' without 'else' in combinational block — latch may be inferred",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add an 'else' clause covering all outputs, or assign defaults at the top of the block before the if statement."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 71,
+      "rule_id": "VLG017",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "'case' statement missing 'default' in combinational block — latch inferred",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add 'default: <output> = <safe_value>;' to every case statement."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 94,
+      "rule_id": "VLG007",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "Delay (#N) found in RTL — simulation-only, causes sim/synth mismatch",
+      "snippet": "assign #5 full  = (count == 5'd16); // VLG007: synthesis-illegal delay",
+      "suggestion": "Remove all '#delay' constructs from RTL code. Rely on clock edges for timing."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 102,
+      "rule_id": "VLG011",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "System task ($display/$monitor/$finish) found in RTL — not synthesizable",
+      "snippet": "$display(\"FIFO overflow at time %0t\", $time); // VLG011",
+      "suggestion": "Move system tasks to a testbench file. Guard RTL with `ifdef SIMULATION if needed."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 109,
+      "rule_id": "VLG035",
+      "severity": "ERROR",
+      "category": "Timing",
+      "description": "Combinational feedback loop detected — signal appears on both LHS and RHS of assign",
+      "snippet": "assign loop_sig = ~loop_sig;",
+      "suggestion": "'loop_sig' feeds itself — insert a register (flip-flop) to break the loop: use a clocked always block with '<='."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 1,
+      "rule_id": "VLG033",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "`default_nettype none` not set — implicit net declarations risk",
+      "snippet": "No `default_nettype none found in file",
+      "suggestion": "Add '`default_nettype none' at the top of every RTL file before any module."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 5,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'bad_fifo' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 17,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "input  [31:0] data_in;   // VLG002: magic number 31",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 18,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "output [31:0] data_out;  // VLG002: magic number 31",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 19,
+      "rule_id": "VLG031",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "Output port is never driven (assigned) inside the module",
+      "snippet": "output port 'full' is never assigned",
+      "suggestion": "Add 'assign full = <value>;' or drive it from an always block."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 23,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0] mem [0:15];   // VLG002: magic number 31",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 60,
+      "rule_id": "VLG018",
+      "severity": "WARNING",
+      "category": "Latch",
+      "description": "Output not assigned on all paths in combinational block — possible latch",
+      "snippet": "Signal 'rd_valid' may not be assigned on all paths",
+      "suggestion": "Add default assignment 'rd_valid = <safe_val>;' at the top of the combinational block."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 71,
+      "rule_id": "VLG027",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM case statement has no 'default' branch — unreachable state lockup risk",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add: 'default: state <= IDLE;' (or safe reset state) to handle illegal state transitions gracefully."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 72,
+      "rule_id": "VLG041",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "FSM has no timeout / watchdog — stuck-state lockup risk",
+      "snippet": "Module 'bad_fifo' has FSM but no timeout/watchdog signal",
+      "suggestion": "Add a watchdog counter that resets the FSM to IDLE after N cycles of inactivity. This prevents permanent lockup from SEU or firmware bugs."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 80,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0] data_out_reg;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 116,
+      "rule_id": "VLG008",
+      "severity": "WARNING",
+      "category": "Synthesis",
+      "description": "'casex'/'casez' used — X/Z wildcard matching can mask bugs",
+      "snippet": "casez (count[3:0])           // VLG008",
+      "suggestion": "Replace 'casex'/'casez' with 'case' and add explicit 'default' branch."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 117,
+      "rule_id": "VLG058",
+      "severity": "WARNING",
+      "category": "Cognitive",
+      "description": "Chained ternary (>2 deep) — replace with case or named wires for clarity",
+      "snippet": "3 ternary operators on one line (threshold: 2)",
+      "suggestion": "Replace chained ternaries with a case statement or break into named intermediate wires for clarity."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 18,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'data_out' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 20,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'empty' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 23,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0] mem [0:15];   // VLG002: magic number 31",
+      "suggestion": "Rename 'mem' to follow convention, e.g. r_mem (reg) or w_mem (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 24,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0]  wr_ptr;",
+      "suggestion": "Rename 'wr_ptr' to follow convention, e.g. r_wr_ptr (reg) or w_wr_ptr (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 25,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0]  rd_ptr;",
+      "suggestion": "Rename 'rd_ptr' to follow convention, e.g. r_rd_ptr (reg) or w_rd_ptr (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 26,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [4:0]  count;",
+      "suggestion": "Rename 'count' to follow convention, e.g. r_count (reg) or w_count (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 40,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk) begin",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 59,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg rd_valid;",
+      "suggestion": "Rename 'rd_valid' to follow convention, e.g. r_rd_valid (reg) or w_rd_valid (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 70,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [1:0] state;",
+      "suggestion": "Rename 'state' to follow convention, e.g. r_state (reg) or w_state (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 80,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0] data_out_reg;",
+      "suggestion": "Rename 'data_out_reg' to follow convention, e.g. r_data_out_reg (reg) or w_data_out_reg (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 86,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk) begin       // VLG026: no rst check",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 100,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk) begin",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 108,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire loop_sig;",
+      "suggestion": "Rename 'loop_sig' to follow convention, e.g. r_loop_sig (reg) or w_loop_sig (wire)."
+    },
+    {
+      "file": "samples/bad_fifo.v",
+      "line": 114,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0] priority_out;",
+      "suggestion": "Rename 'priority_out' to follow convention, e.g. r_priority_out (reg) or w_priority_out (wire)."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 49,
+      "rule_id": "VLG022",
+      "severity": "ERROR",
+      "category": "CDC",
+      "description": "Combinational logic found on clock path (gated clock) — glitch risk",
+      "snippet": "assign clk_gated = clk_a & processed;",
+      "suggestion": "Avoid combinational clock gating. Use clock enable (CE) pins on FFs, or instantiate tech-library ICG cells for ASIC."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 1,
+      "rule_id": "VLG033",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "`default_nettype none` not set — implicit net declarations risk",
+      "snippet": "No `default_nettype none found in file",
+      "suggestion": "Add '`default_nettype none' at the top of every RTL file before any module."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 5,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'cdc_hazards' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 49,
+      "rule_id": "VLG021",
+      "severity": "WARNING",
+      "category": "CDC",
+      "description": "Clock signal used as data (non-clock position) — potential gated clock hazard",
+      "snippet": "assign clk_gated = clk_a & processed;",
+      "suggestion": "'clk_a' is being gated combinationally. Use a dedicated ICG (Integrated Clock Gating) cell instead."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 24,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] bus_sync1, bus_sync2;",
+      "suggestion": "Rename 'bus_sync1' to follow convention, e.g. r_bus_sync1 (reg) or w_bus_sync1 (wire)."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 25,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk_a) bus_sync1 <= bus_from_a;",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 26,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk_b) bus_sync2 <= bus_sync1;   // VLG019: 8-bit, wrong!",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 31,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg flag_meta;",
+      "suggestion": "Rename 'flag_meta' to follow convention, e.g. r_flag_meta (reg) or w_flag_meta (wire)."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 32,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk_b) begin",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 40,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg single_ff_sync;",
+      "suggestion": "Rename 'single_ff_sync' to follow convention, e.g. r_single_ff_sync (reg) or w_single_ff_sync (wire)."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 41,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk_b) begin",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/cdc_hazards.v",
+      "line": 54,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk_gated) begin      // Using gated clock",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/good_counter.v",
+      "line": 14,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'good_counter' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/good_uart_rx.v",
+      "line": 52,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [2:0] state_r, state_next;",
+      "suggestion": "Rename 'state_r' to follow convention, e.g. r_state_r (reg) or w_state_r (wire)."
+    },
+    {
+      "file": "samples/good_uart_rx.v",
+      "line": 57,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg rx_meta, rx_sync;",
+      "suggestion": "Rename 'rx_meta' to follow convention, e.g. r_rx_meta (reg) or w_rx_meta (wire)."
+    },
+    {
+      "file": "samples/good_uart_rx.v",
+      "line": 71,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [CNT_W-1:0]     baud_cnt;",
+      "suggestion": "Rename 'baud_cnt' to follow convention, e.g. r_baud_cnt (reg) or w_baud_cnt (wire)."
+    },
+    {
+      "file": "samples/good_uart_rx.v",
+      "line": 72,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [BIT_CNT_W-1:0] bit_cnt;",
+      "suggestion": "Rename 'bit_cnt' to follow convention, e.g. r_bit_cnt (reg) or w_bit_cnt (wire)."
+    },
+    {
+      "file": "samples/good_uart_rx.v",
+      "line": 73,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire                baud_tick  = (baud_cnt == BAUD_DIV[CNT_W-1:0] - 1);",
+      "suggestion": "Rename 'baud_tick' to follow convention, e.g. r_baud_tick (reg) or w_baud_tick (wire)."
+    },
+    {
+      "file": "samples/good_uart_rx.v",
+      "line": 74,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire                half_tick  = (baud_cnt == HALF_DIV[CNT_W-1:0] - 1);",
+      "suggestion": "Rename 'half_tick' to follow convention, e.g. r_half_tick (reg) or w_half_tick (wire)."
+    },
+    {
+      "file": "samples/good_uart_rx.v",
+      "line": 131,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] shift_r;",
+      "suggestion": "Rename 'shift_r' to follow convention, e.g. r_shift_r (reg) or w_shift_r (wire)."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 63,
+      "rule_id": "VLG024",
+      "severity": "ERROR",
+      "category": "Reset",
+      "description": "Reset used as async but not present in always block sensitivity list",
+      "snippet": "always @(posedge i_clk) begin                      // sync reset",
+      "suggestion": "Other blocks in this module use async reset. Add reset to this block's sensitivity list or convert to sync-reset style consistently."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 78,
+      "rule_id": "VLG017",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "'case' statement missing 'default' in combinational block — latch inferred",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add 'default: <output> = <safe_value>;' to every case statement."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 155,
+      "rule_id": "VLG024",
+      "severity": "ERROR",
+      "category": "Reset",
+      "description": "Reset used as async but not present in always block sensitivity list",
+      "snippet": "always @(posedge i_clk) begin",
+      "suggestion": "Other blocks in this module use async reset. Add reset to this block's sensitivity list or convert to sync-reset style consistently."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 167,
+      "rule_id": "VLG011",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "System task ($display/$monitor/$finish) found in RTL — not synthesizable",
+      "snippet": "$monitor(\"[MEMCTRL] state %0d -> %0d at time %0t\", state, next_state, $time); // VLG011",
+      "suggestion": "Move system tasks to a testbench file. Guard RTL with `ifdef SIMULATION if needed."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 12,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'mem_ctrl' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 20,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "input  wire [23:0] i_addr,        // VLG002: magic 23",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 21,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "input  wire [63:0] i_wdata,       // VLG002: magic 63",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 22,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "output reg  [63:0] o_rdata,       // VLG002: magic 63",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 30,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "output reg  [23:0] o_dram_addr,   // VLG002: magic 23",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 31,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "output reg  [63:0] o_dram_dq_out, // VLG002: magic 63",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 32,
+      "rule_id": "VLG031",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "Output port is never driven (assigned) inside the module",
+      "snippet": "output port 'o_dram_dq_oe' is never assigned",
+      "suggestion": "Add 'assign o_dram_dq_oe = <value>;' or drive it from an always block."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 33,
+      "rule_id": "VLG031",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "Output port is never driven (assigned) inside the module",
+      "snippet": "output port 'o_error' is never assigned",
+      "suggestion": "Add 'assign o_error = <value>;' or drive it from an always block."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 78,
+      "rule_id": "VLG027",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM case statement has no 'default' branch — unreachable state lockup risk",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add: 'default: state <= IDLE;' (or safe reset state) to handle illegal state transitions gracefully."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 78,
+      "rule_id": "VLG030",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM outputs decoded combinationally — consider registering outputs to prevent glitches",
+      "snippet": "always @(*) begin",
+      "suggestion": "Move output assignments to a separate registered always block (Moore output model) to prevent glitches."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 88,
+      "rule_id": "VLG041",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "FSM has no timeout / watchdog — stuck-state lockup risk",
+      "snippet": "Module 'mem_ctrl' has FSM but no timeout/watchdog signal",
+      "suggestion": "Add a watchdog counter that resets the FSM to IDLE after N cycles of inactivity. This prevents permanent lockup from SEU or firmware bugs."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 173,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "wire [63:0] rand_data;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 23,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_ack' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 26,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_dram_cs_n' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 27,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_dram_ras_n' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 28,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_dram_cas_n' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 29,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_dram_we_n' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 30,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_dram_addr' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 31,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_dram_dq_out' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 50,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0] state, next_state;",
+      "suggestion": "Rename 'state' to follow convention, e.g. r_state (reg) or w_state (wire)."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 51,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0] timer;",
+      "suggestion": "Rename 'timer' to follow convention, e.g. r_timer (reg) or w_timer (wire)."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 165,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) begin",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 173,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [63:0] rand_data;",
+      "suggestion": "Rename 'rand_data' to follow convention, e.g. r_rand_data (reg) or w_rand_data (wire)."
+    },
+    {
+      "file": "samples/mem_ctrl.v",
+      "line": 174,
+      "rule_id": "VLG039",
+      "severity": "INFO",
+      "category": "Testability",
+      "description": "$random/$urandom used in RTL — non-synthesizable, testbench-only construct",
+      "snippet": "assign rand_data = {$random, $random};  // VLG039",
+      "suggestion": "Move $random/$urandom to testbench only. Use LFSR or PRNG hardware if randomness needed in RTL."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 43,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "stage2_product = 32'h0;   // VLG013: blocking in clocked block",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 44,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "stage2_valid   = 1'b0;    // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 46,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "stage2_product = stage1_data * stage1_data; // VLG013: blocking",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 47,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "stage2_valid   = stage1_valid;               // VLG013",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 57,
+      "rule_id": "VLG016",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "Incomplete 'if' without 'else' in combinational block — latch may be inferred",
+      "snippet": "always @(*) begin                  // VLG009 candidate: explicit sensitivity",
+      "suggestion": "Add an 'else' clause covering all outputs, or assign defaults at the top of the block before the if statement."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 125,
+      "rule_id": "VLG006",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "'initial' block found — not synthesizable (simulation-only construct)",
+      "snippet": "initial begin                       // VLG006",
+      "suggestion": "Remove 'initial' block from RTL. Use reset logic in a clocked always block instead."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 1,
+      "rule_id": "VLG033",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "`default_nettype none` not set — implicit net declarations risk",
+      "snippet": "No `default_nettype none found in file",
+      "suggestion": "Add '`default_nettype none' at the top of every RTL file before any module."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 7,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'pipeline_hazards' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 11,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "input  [15:0] data_in,    // VLG002: magic number",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 13,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "output reg [31:0] result, // VLG002: magic number",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 22,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [15:0] stage1_data;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 38,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0] stage2_product;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 54,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0] accum;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 57,
+      "rule_id": "VLG018",
+      "severity": "WARNING",
+      "category": "Latch",
+      "description": "Output not assigned on all paths in combinational block — possible latch",
+      "snippet": "Signal 'accum' may not be assigned on all paths",
+      "suggestion": "Add default assignment 'accum = <safe_val>;' at the top of the combinational block."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 70,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0] result_cdc_a;  // clk_fast domain copy",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 104,
+      "rule_id": "VLG008",
+      "severity": "WARNING",
+      "category": "Synthesis",
+      "description": "'casex'/'casez' used — X/Z wildcard matching can mask bugs",
+      "snippet": "casez (stage2_product[31:30])  // VLG008: casez used",
+      "suggestion": "Replace 'casex'/'casez' with 'case' and add explicit 'default' branch."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 120,
+      "rule_id": "VLG021",
+      "severity": "WARNING",
+      "category": "CDC",
+      "description": "Clock signal used as data (non-clock position) — potential gated clock hazard",
+      "snippet": "assign debug_clk_xor = clk_fast ^ clk_slow;",
+      "suggestion": "'clk_fast' is being gated combinationally. Use a dedicated ICG (Integrated Clock Gating) cell instead."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 120,
+      "rule_id": "VLG021",
+      "severity": "WARNING",
+      "category": "CDC",
+      "description": "Clock signal used as data (non-clock position) — potential gated clock hazard",
+      "snippet": "assign debug_clk_xor = clk_fast ^ clk_slow;",
+      "suggestion": "'clk_slow' is being gated combinationally. Use a dedicated ICG (Integrated Clock Gating) cell instead."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 22,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [15:0] stage1_data;",
+      "suggestion": "Rename 'stage1_data' to follow convention, e.g. r_stage1_data (reg) or w_stage1_data (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 23,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg        stage1_valid;",
+      "suggestion": "Rename 'stage1_valid' to follow convention, e.g. r_stage1_valid (reg) or w_stage1_valid (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 38,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0] stage2_product;",
+      "suggestion": "Rename 'stage2_product' to follow convention, e.g. r_stage2_product (reg) or w_stage2_product (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 39,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg        stage2_valid;",
+      "suggestion": "Rename 'stage2_valid' to follow convention, e.g. r_stage2_valid (reg) or w_stage2_valid (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 43,
+      "rule_id": "VLG050",
+      "severity": "INFO",
+      "category": "Maintainability",
+      "description": "Same magic constant appears >3 times — extract to parameter / localparam",
+      "snippet": "Literal '32'h0' appears 4 times in module 'pipeline_hazards'",
+      "suggestion": "Replace '32'h0' with a named localparam. Repeated literals are error-prone when specifications change."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 54,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0] accum;",
+      "suggestion": "Rename 'accum' to follow convention, e.g. r_accum (reg) or w_accum (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 55,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg        accum_valid;",
+      "suggestion": "Rename 'accum_valid' to follow convention, e.g. r_accum_valid (reg) or w_accum_valid (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 70,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0] result_cdc_a;  // clk_fast domain copy",
+      "suggestion": "Rename 'result_cdc_a' to follow convention, e.g. r_result_cdc_a (reg) or w_result_cdc_a (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 71,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg        valid_cdc_a;",
+      "suggestion": "Rename 'valid_cdc_a' to follow convention, e.g. r_valid_cdc_a (reg) or w_valid_cdc_a (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 102,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [1:0] priority_level;",
+      "suggestion": "Rename 'priority_level' to follow convention, e.g. r_priority_level (reg) or w_priority_level (wire)."
+    },
+    {
+      "file": "samples/pipeline_hazards.v",
+      "line": 119,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire debug_clk_xor;",
+      "suggestion": "Rename 'debug_clk_xor' to follow convention, e.g. r_debug_clk_xor (reg) or w_debug_clk_xor (wire)."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 75,
+      "rule_id": "VLG009",
+      "severity": "ERROR",
+      "category": "Synthesis",
+      "description": "Explicit sensitivity list in combinational block — may be incomplete (use always @(*))",
+      "snippet": "always @(duty_reg) begin               // VLG009: missing counter from sensitivity",
+      "suggestion": "Replace explicit sensitivity list with 'always @(*)' or SystemVerilog 'always_comb'."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 87,
+      "rule_id": "VLG013",
+      "severity": "ERROR",
+      "category": "Assignments",
+      "description": "Blocking assignment '=' used in clocked always block — use '<=' for FFs",
+      "snippet": "mixed_reg  = 8'h0;           // VLG015: blocking",
+      "suggestion": "Change '=' to '<=' for all register assignments in clocked always blocks."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 1,
+      "rule_id": "VLG033",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "`default_nettype none` not set — implicit net declarations risk",
+      "snippet": "No `default_nettype none found in file",
+      "suggestion": "Add '`default_nettype none' at the top of every RTL file before any module."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 6,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'pwm_controller' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 59,
+      "rule_id": "VLG012",
+      "severity": "WARNING",
+      "category": "Synthesis",
+      "description": "High-impedance (1'bz) assigned without explicit tri-state enable",
+      "snippet": "assign dut_io = 1'bz;  // VLG012: always driving Z — missing oe enable pin",
+      "suggestion": "Use tri-state pattern: assign out = (oe) ? data : 'bz;"
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 65,
+      "rule_id": "VLG021",
+      "severity": "WARNING",
+      "category": "CDC",
+      "description": "Clock signal used as data (non-clock position) — potential gated clock hazard",
+      "snippet": "assign gated_cfg_clk = clk_cfg & pwm_r;",
+      "suggestion": "'clk_cfg' is being gated combinationally. Use a dedicated ICG (Integrated Clock Gating) cell instead."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 85,
+      "rule_id": "VLG015",
+      "severity": "WARNING",
+      "category": "Assignments",
+      "description": "Mixed blocking and non-blocking assignments in same always block",
+      "snippet": "always @(posedge clk_sys) begin",
+      "suggestion": "Use exclusively '<=' in clocked blocks and '=' in combinational blocks. Never mix."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 16,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'pwm_out' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 17,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'pwm_n' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 20,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'dut_io' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 26,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] duty_reg;       // VLG003: no prefix convention (r_duty_reg)",
+      "suggestion": "Rename 'duty_reg' to follow convention, e.g. r_duty_reg (reg) or w_duty_reg (wire)."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 27,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] counter;        // VLG003",
+      "suggestion": "Rename 'counter' to follow convention, e.g. r_counter (reg) or w_counter (wire)."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 28,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg       pwm_r;          // VLG003",
+      "suggestion": "Rename 'pwm_r' to follow convention, e.g. r_pwm_r (reg) or w_pwm_r (wire)."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 29,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] duty_sync;      // CDC sync register",
+      "suggestion": "Rename 'duty_sync' to follow convention, e.g. r_duty_sync (reg) or w_duty_sync (wire)."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 64,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire gated_cfg_clk;",
+      "suggestion": "Rename 'gated_cfg_clk' to follow convention, e.g. r_gated_cfg_clk (reg) or w_gated_cfg_clk (wire)."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 67,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge gated_cfg_clk) begin     // Using the glitch-prone gated clock",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 74,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] duty_display;",
+      "suggestion": "Rename 'duty_display' to follow convention, e.g. r_duty_display (reg) or w_duty_display (wire)."
+    },
+    {
+      "file": "samples/pwm_controller.v",
+      "line": 84,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] mixed_reg;",
+      "suggestion": "Rename 'mixed_reg' to follow convention, e.g. r_mixed_reg (reg) or w_mixed_reg (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 39,
+      "rule_id": "VLG055",
+      "severity": "ERROR",
+      "category": "Security",
+      "description": "Security signal driven combinationally — glitch-fault bypass risk",
+      "snippet": "Security signal 'o_grant' is driven combinationally, never registered",
+      "suggestion": "Register 'o_grant' with a flip-flop. Combinational security signals are vulnerable to voltage/EM glitch-fault injection."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 40,
+      "rule_id": "VLG055",
+      "severity": "ERROR",
+      "category": "Security",
+      "description": "Security signal driven combinationally — glitch-fault bypass risk",
+      "snippet": "Security signal 'o_secure_ok' is driven combinationally, never registered",
+      "suggestion": "Register 'o_secure_ok' with a flip-flop. Combinational security signals are vulnerable to voltage/EM glitch-fault injection."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 50,
+      "rule_id": "VLG054",
+      "severity": "ERROR",
+      "category": "Security",
+      "description": "Hardcoded key / credential in RTL — use OTP or eFuse instead",
+      "snippet": "Parameter 'AES_KEY' = 128'hDEAD_BEEF_CAFE_BABE_0123_4567_89AB_… is a hardcoded secret",
+      "suggestion": "Never hardcode keys in RTL. Load them from OTP/eFuse/key-bus at runtime. Hardcoded keys can be extracted from the bitstream by an attacker."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 51,
+      "rule_id": "VLG054",
+      "severity": "ERROR",
+      "category": "Security",
+      "description": "Hardcoded key / credential in RTL — use OTP or eFuse instead",
+      "snippet": "Parameter 'SECRET_KEY' = 128'h0000_1111_2222_3333_4444_5555_6666_… is a hardcoded secret",
+      "suggestion": "Never hardcode keys in RTL. Load them from OTP/eFuse/key-bus at runtime. Hardcoded keys can be extracted from the bitstream by an attacker."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 70,
+      "rule_id": "VLG053",
+      "severity": "ERROR",
+      "category": "Security",
+      "description": "Sensitive register not zeroed on reset — cryptographic data-remanence risk",
+      "snippet": "Sensitive register 'cipher_key' is not zeroed on reset",
+      "suggestion": "Add 'cipher_key <= 0;' in the reset branch to prevent cryptographic data remanence after context switch."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 108,
+      "rule_id": "VLG044",
+      "severity": "ERROR",
+      "category": "Reliability",
+      "description": "Shift amount may exceed signal width — result is always zero or undefined",
+      "snippet": "'shift_reg' is 8 bits wide but shifted by 10",
+      "suggestion": "The shift amount (10) >= signal width (8). This always produces zero. Reduce the shift or widen the signal."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 120,
+      "rule_id": "VLG017",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "'case' statement missing 'default' in combinational block — latch inferred",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add 'default: <output> = <safe_value>;' to every case statement."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 1,
+      "rule_id": "VLG033",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "`default_nettype none` not set — implicit net declarations risk",
+      "snippet": "No `default_nettype none found in file",
+      "suggestion": "Add '`default_nettype none' at the top of every RTL file before any module."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 14,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'security_ctrl' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 31,
+      "rule_id": "VLG052",
+      "severity": "WARNING",
+      "category": "Security",
+      "description": "Debug / JTAG port in production RTL — potential attack surface",
+      "snippet": "Port 'i_jtag_tdi' looks like a debug/JTAG interface",
+      "suggestion": "Gate debug ports behind a hardware fuse or eFuse-controlled mux. In production silicon, debug access should be permanently disabled."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 32,
+      "rule_id": "VLG052",
+      "severity": "WARNING",
+      "category": "Security",
+      "description": "Debug / JTAG port in production RTL — potential attack surface",
+      "snippet": "Port 'i_jtag_tms' looks like a debug/JTAG interface",
+      "suggestion": "Gate debug ports behind a hardware fuse or eFuse-controlled mux. In production silicon, debug access should be permanently disabled."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 33,
+      "rule_id": "VLG052",
+      "severity": "WARNING",
+      "category": "Security",
+      "description": "Debug / JTAG port in production RTL — potential attack surface",
+      "snippet": "Port 'i_jtag_tck' looks like a debug/JTAG interface",
+      "suggestion": "Gate debug ports behind a hardware fuse or eFuse-controlled mux. In production silicon, debug access should be permanently disabled."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 34,
+      "rule_id": "VLG031",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "Output port is never driven (assigned) inside the module",
+      "snippet": "output port 'o_jtag_tdo' is never assigned",
+      "suggestion": "Add 'assign o_jtag_tdo = <value>;' or drive it from an always block."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 34,
+      "rule_id": "VLG052",
+      "severity": "WARNING",
+      "category": "Security",
+      "description": "Debug / JTAG port in production RTL — potential attack surface",
+      "snippet": "Port 'o_jtag_tdo' looks like a debug/JTAG interface",
+      "suggestion": "Gate debug ports behind a hardware fuse or eFuse-controlled mux. In production silicon, debug access should be permanently disabled."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 70,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [127:0] cipher_key;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 73,
+      "rule_id": "VLG051",
+      "severity": "WARNING",
+      "category": "Security",
+      "description": "Memory array never cleared on reset — stale-data leak across contexts",
+      "snippet": "Memory array 'sec_mem' is never cleared on reset or initialization",
+      "suggestion": "Add a reset loop: 'for (i=0; i<DEPTH; i=i+1) mem[i] <= 0;' to prevent stale data leakage between secure contexts."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 85,
+      "rule_id": "VLG002",
+      "severity": "WARNING",
+      "category": "Style",
+      "description": "Magic number used in signal/port width — use a named parameter instead",
+      "snippet": "reg [31:0] wide_threshold;",
+      "suggestion": "Replace literal width with a named parameter, e.g. `parameter DATA_WIDTH = 32`."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 120,
+      "rule_id": "VLG027",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM case statement has no 'default' branch — unreachable state lockup risk",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add: 'default: state <= IDLE;' (or safe reset state) to handle illegal state transitions gracefully."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 120,
+      "rule_id": "VLG048",
+      "severity": "WARNING",
+      "category": "Maintainability",
+      "description": "Control flow nested >3 levels deep — hard to review and verify",
+      "snippet": "Nesting depth 5 (threshold: 3)",
+      "suggestion": "Flatten deep nesting by extracting sub-blocks into separate always blocks, using case statements, or splitting logic into sub-modules."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 122,
+      "rule_id": "VLG041",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "FSM has no timeout / watchdog — stuck-state lockup risk",
+      "snippet": "Module 'security_ctrl' has FSM but no timeout/watchdog signal",
+      "suggestion": "Add a watchdog counter that resets the FSM to IDLE after N cycles of inactivity. This prevents permanent lockup from SEU or firmware bugs."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 174,
+      "rule_id": "VLG045",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "Clock-enable feedback — CE depends on its own registered output, livelock risk",
+      "snippet": "CE signal 'ce_active' is both the if-guard and assigned inside this clocked block",
+      "suggestion": "Ensure 'ce_active' has an external re-assertion path (e.g. from a different always block or external input) to avoid livelock."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 185,
+      "rule_id": "VLG043",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "Width mismatch in comparison — implicit extension may hide bugs",
+      "snippet": "'narrow_cnt' (8b) vs 'wide_threshold' (32b) — 24 bit mismatch",
+      "suggestion": "Explicitly extend the narrower signal or use a sized comparison: {{ {abs(lw-rw)}'b0, narrow_cnt }} to avoid implicit extension."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 190,
+      "rule_id": "VLG057",
+      "severity": "WARNING",
+      "category": "Cognitive",
+      "description": "Complex boolean expression (>4 operators) — hard to review, split into named wires",
+      "snippet": "7 boolean/bitwise operators in single expression (threshold: 4)",
+      "suggestion": "Break this expression into named intermediate wires with meaningful names. Example: wire addr_hit = (addr >= BASE) & (addr < BASE + SIZE);"
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 193,
+      "rule_id": "VLG058",
+      "severity": "WARNING",
+      "category": "Cognitive",
+      "description": "Chained ternary (>2 deep) — replace with case or named wires for clarity",
+      "snippet": "3 ternary operators on one line (threshold: 2)",
+      "suggestion": "Replace chained ternaries with a case statement or break into named intermediate wires for clarity."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 206,
+      "rule_id": "VLG043",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "Width mismatch in comparison — implicit extension may hide bugs",
+      "snippet": "'shift_reg' (8b) vs 'i_data' (1b) — 7 bit mismatch",
+      "suggestion": "Explicitly extend the narrower signal or use a sized comparison: {{ {abs(lw-rw)}'b0, i_data }} to avoid implicit extension."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 224,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'dummy_sub' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 224,
+      "rule_id": "VLG059",
+      "severity": "WARNING",
+      "category": "Cognitive",
+      "description": "File contains multiple modules — one module per file for traceability",
+      "snippet": "Second module 'dummy_sub' in same file (first was 'security_ctrl')",
+      "suggestion": "Move module 'dummy_sub' to its own file 'dummy_sub.v'. One module per file improves discoverability and version-control clarity."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 14,
+      "rule_id": "VLG047",
+      "severity": "INFO",
+      "category": "Maintainability",
+      "description": "Module has >20 ports — god-module, consider splitting functionality",
+      "snippet": "Module 'security_ctrl' has 22 ports (threshold: 20)",
+      "suggestion": "Group related signals into sub-modules or use bus interfaces. Large port lists increase integration errors."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 14,
+      "rule_id": "VLG049",
+      "severity": "INFO",
+      "category": "Maintainability",
+      "description": "Module has >10 always blocks — consider decomposing into sub-modules",
+      "snippet": "Module 'security_ctrl' has 14 always blocks (threshold: 10)",
+      "suggestion": "Group related always blocks into sub-modules. Many blocks in one file make signal tracing difficult."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 14,
+      "rule_id": "VLG060",
+      "severity": "INFO",
+      "category": "Cognitive",
+      "description": "Mixed behavioral + structural styles in one module — pick one for clarity",
+      "snippet": "Module 'security_ctrl' mixes always blocks and module instantiations",
+      "suggestion": "Separate structural (instantiation) wrappers from behavioral (always) logic. This reduces cognitive load during code review."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 26,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_rdata' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 27,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_valid' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 28,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_error' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 39,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_grant' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 40,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_secure_ok' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 42,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_status' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 44,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_irq' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 70,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [127:0] cipher_key;",
+      "suggestion": "Rename 'cipher_key' to follow convention, e.g. r_cipher_key (reg) or w_cipher_key (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 73,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [DATA_W-1:0] sec_mem [0:255];",
+      "suggestion": "Rename 'sec_mem' to follow convention, e.g. r_sec_mem (reg) or w_sec_mem (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 76,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0] state, next_state;",
+      "suggestion": "Rename 'state' to follow convention, e.g. r_state (reg) or w_state (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 77,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [DATA_W-1:0] data_buf;",
+      "suggestion": "Rename 'data_buf' to follow convention, e.g. r_data_buf (reg) or w_data_buf (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 78,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [ADDR_W-1:0] addr_buf;",
+      "suggestion": "Rename 'addr_buf' to follow convention, e.g. r_addr_buf (reg) or w_addr_buf (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 79,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg        valid_r;",
+      "suggestion": "Rename 'valid_r' to follow convention, e.g. r_valid_r (reg) or w_valid_r (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 80,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg        error_r;",
+      "suggestion": "Rename 'error_r' to follow convention, e.g. r_error_r (reg) or w_error_r (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 81,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0]  status_r;",
+      "suggestion": "Rename 'status_r' to follow convention, e.g. r_status_r (reg) or w_status_r (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 84,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0]  narrow_cnt;",
+      "suggestion": "Rename 'narrow_cnt' to follow convention, e.g. r_narrow_cnt (reg) or w_narrow_cnt (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 85,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [31:0] wide_threshold;",
+      "suggestion": "Rename 'wide_threshold' to follow convention, e.g. r_wide_threshold (reg) or w_wide_threshold (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 88,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] shift_reg;",
+      "suggestion": "Rename 'shift_reg' to follow convention, e.g. r_shift_reg (reg) or w_shift_reg (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 91,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg ce_active;",
+      "suggestion": "Rename 'ce_active' to follow convention, e.g. r_ce_active (reg) or w_ce_active (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 94,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [DATA_W-1:0] mask0 = 32'hFF00_FF00;",
+      "suggestion": "Rename 'mask0' to follow convention, e.g. r_mask0 (reg) or w_mask0 (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 94,
+      "rule_id": "VLG050",
+      "severity": "INFO",
+      "category": "Maintainability",
+      "description": "Same magic constant appears >3 times — extract to parameter / localparam",
+      "snippet": "Literal '32'hFF00_FF00' appears 4 times in module 'security_ctrl'",
+      "suggestion": "Replace '32'hFF00_FF00' with a named localparam. Repeated literals are error-prone when specifications change."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 95,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [DATA_W-1:0] mask1 = 32'hFF00_FF00;",
+      "suggestion": "Rename 'mask1' to follow convention, e.g. r_mask1 (reg) or w_mask1 (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 96,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [DATA_W-1:0] mask2 = 32'hFF00_FF00;",
+      "suggestion": "Rename 'mask2' to follow convention, e.g. r_mask2 (reg) or w_mask2 (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 97,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [DATA_W-1:0] mask3 = 32'hFF00_FF00;  // 4th repetition → VLG050",
+      "suggestion": "Rename 'mask3' to follow convention, e.g. r_mask3 (reg) or w_mask3 (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 108,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [7:0] shifted_out = shift_reg >> 10;",
+      "suggestion": "Rename 'shifted_out' to follow convention, e.g. r_shifted_out (reg) or w_shifted_out (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 122,
+      "rule_id": "VLG056",
+      "severity": "INFO",
+      "category": "Cognitive",
+      "description": "Case statement has >12 branches — consider ROM or LUT decode",
+      "snippet": "case statement has 14 branches (threshold: 12)",
+      "suggestion": "Replace large case with a ROM array or lookup table. Example: wire [W-1:0] rom [0:N]; assign out = rom[sel];"
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 190,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire complex_cond = (i_wr_en & i_rd_en) | (~i_rst_n & i_priv_mode) ^ (i_cmd[0] | i_cmd[1]) & i_addr[0];",
+      "suggestion": "Rename 'complex_cond' to follow convention, e.g. r_complex_cond (reg) or w_complex_cond (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 193,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire [1:0] priority_level = i_priv_mode ? 2'b11 : i_wr_en ? 2'b10 : i_rd_en ? 2'b01 : 2'b00;",
+      "suggestion": "Rename 'priority_level' to follow convention, e.g. r_priority_level (reg) or w_priority_level (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 206,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) shift_reg    <= i_data[7:0];",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 207,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) wide_threshold <= {24'b0, i_data[7:0]};",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 208,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) cipher_key   <= {i_data, i_data, i_data, i_data};",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 211,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg dummy1, dummy2, dummy3, dummy4, dummy5, dummy6;",
+      "suggestion": "Rename 'dummy1' to follow convention, e.g. r_dummy1 (reg) or w_dummy1 (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 212,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) dummy1 <= i_data[0];",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 213,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) dummy2 <= i_data[1];",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 214,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) dummy3 <= i_data[2];",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 215,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) dummy4 <= i_data[3];",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 216,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) dummy5 <= i_data[4];",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 217,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) dummy6 <= i_data[5];",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 228,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] buf_r;",
+      "suggestion": "Rename 'buf_r' to follow convention, e.g. r_buf_r (reg) or w_buf_r (wire)."
+    },
+    {
+      "file": "samples/security_ctrl.v",
+      "line": 229,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk) buf_r <= data;",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 74,
+      "rule_id": "VLG017",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "'case' statement missing 'default' in combinational block — latch inferred",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add 'default: <output> = <safe_value>;' to every case statement."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 12,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'spi_master' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 23,
+      "rule_id": "VLG031",
+      "severity": "WARNING",
+      "category": "Ports",
+      "description": "Output port is never driven (assigned) inside the module",
+      "snippet": "output port 'o_busy' is never assigned",
+      "suggestion": "Add 'assign o_busy = <value>;' or drive it from an always block."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 74,
+      "rule_id": "VLG027",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM case statement has no 'default' branch — unreachable state lockup risk",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add: 'default: state <= IDLE;' (or safe reset state) to handle illegal state transitions gracefully."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 74,
+      "rule_id": "VLG030",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM outputs decoded combinationally — consider registering outputs to prevent glitches",
+      "snippet": "always @(*) begin",
+      "suggestion": "Move output assignments to a separate registered always block (Moore output model) to prevent glitches."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 81,
+      "rule_id": "VLG041",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "FSM has no timeout / watchdog — stuck-state lockup risk",
+      "snippet": "Module 'spi_master' has FSM but no timeout/watchdog signal",
+      "suggestion": "Add a watchdog counter that resets the FSM to IDLE after N cycles of inactivity. This prevents permanent lockup from SEU or firmware bugs."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 161,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'spi_clk_div' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 161,
+      "rule_id": "VLG059",
+      "severity": "WARNING",
+      "category": "Cognitive",
+      "description": "File contains multiple modules — one module per file for traceability",
+      "snippet": "Second module 'spi_clk_div' in same file (first was 'spi_master')",
+      "suggestion": "Move module 'spi_clk_div' to its own file 'spi_clk_div.v'. One module per file improves discoverability and version-control clarity."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 12,
+      "rule_id": "VLG060",
+      "severity": "INFO",
+      "category": "Cognitive",
+      "description": "Mixed behavioral + structural styles in one module — pick one for clarity",
+      "snippet": "Module 'spi_master' mixes always blocks and module instantiations",
+      "suggestion": "Separate structural (instantiation) wrappers from behavioral (always) logic. This reduces cognitive load during code review."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 18,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_sclk' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 19,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_mosi' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 20,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_cs_n' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 22,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_done' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 39,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0] state, next_state;",
+      "suggestion": "Rename 'state' to follow convention, e.g. r_state (reg) or w_state (wire)."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 40,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] shift_reg;",
+      "suggestion": "Rename 'shift_reg' to follow convention, e.g. r_shift_reg (reg) or w_shift_reg (wire)."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 41,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0] bit_idx;",
+      "suggestion": "Rename 'bit_idx' to follow convention, e.g. r_bit_idx (reg) or w_bit_idx (wire)."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 62,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge i_clk) begin       // VLG026: no reset branch",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/spi_master.v",
+      "line": 165,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'o_clk_en' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 60,
+      "rule_id": "VLG024",
+      "severity": "ERROR",
+      "category": "Reset",
+      "description": "Reset used as async but not present in always block sensitivity list",
+      "snippet": "always @(posedge clk_uart) begin",
+      "suggestion": "Other blocks in this module use async reset. Add reset to this block's sensitivity list or convert to sync-reset style consistently."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 74,
+      "rule_id": "VLG017",
+      "severity": "ERROR",
+      "category": "Latch",
+      "description": "'case' statement missing 'default' in combinational block — latch inferred",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add 'default: <output> = <safe_value>;' to every case statement."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 9,
+      "rule_id": "VLG038",
+      "severity": "WARNING",
+      "category": "Testability",
+      "description": "Sequential module lacks scan-enable port (DFT gap — ATPG coverage risk)",
+      "snippet": "Module 'uart_tx' has FFs but no scan_en/test_en port",
+      "suggestion": "Add 'input scan_en' port and use it to mux FF data input with scan chain data. Consult your DFT methodology guide for scan insertion flow."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 50,
+      "rule_id": "VLG023",
+      "severity": "WARNING",
+      "category": "Reset",
+      "description": "Mixed synchronous and asynchronous reset strategy detected in module",
+      "snippet": "Async reset at line 50, sync reset at line 60",
+      "suggestion": "Standardize on one reset strategy. Recommended: async assert, synchronous deassert using a 2-FF reset synchronizer."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 74,
+      "rule_id": "VLG027",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM case statement has no 'default' branch — unreachable state lockup risk",
+      "snippet": "always @(*) begin",
+      "suggestion": "Add: 'default: state <= IDLE;' (or safe reset state) to handle illegal state transitions gracefully."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 74,
+      "rule_id": "VLG030",
+      "severity": "WARNING",
+      "category": "FSM",
+      "description": "FSM outputs decoded combinationally — consider registering outputs to prevent glitches",
+      "snippet": "always @(*) begin",
+      "suggestion": "Move output assignments to a separate registered always block (Moore output model) to prevent glitches."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 79,
+      "rule_id": "VLG041",
+      "severity": "WARNING",
+      "category": "Reliability",
+      "description": "FSM has no timeout / watchdog — stuck-state lockup risk",
+      "snippet": "Module 'uart_tx' has FSM but no timeout/watchdog signal",
+      "suggestion": "Add a watchdog counter that resets the FSM to IDLE after N cycles of inactivity. This prevents permanent lockup from SEU or firmware bugs."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 106,
+      "rule_id": "VLG021",
+      "severity": "WARNING",
+      "category": "CDC",
+      "description": "Clock signal used as data (non-clock position) — potential gated clock hazard",
+      "snippet": "assign gated_clk = clk_uart & tx_busy;",
+      "suggestion": "'clk_uart' is being gated combinationally. Use a dedicated ICG (Integrated Clock Gating) cell instead."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 17,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'tx_out' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 18,
+      "rule_id": "VLG042",
+      "severity": "INFO",
+      "category": "Reliability",
+      "description": "Unregistered output — combinational path to port, glitch & timing risk",
+      "snippet": "Output port 'tx_busy' is driven combinationally, never registered",
+      "suggestion": "Register this output with a flip-flop before driving it to the port. This eliminates glitches and eases timing closure."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 32,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [2:0] state;",
+      "suggestion": "Rename 'state' to follow convention, e.g. r_state (reg) or w_state (wire)."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 33,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [2:0] next_state;     // next state computed in combinational block",
+      "suggestion": "Rename 'next_state' to follow convention, e.g. r_next_state (reg) or w_next_state (wire)."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 34,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [7:0] shift_reg;",
+      "suggestion": "Rename 'shift_reg' to follow convention, e.g. r_shift_reg (reg) or w_shift_reg (wire)."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 35,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg [3:0] bit_cnt;",
+      "suggestion": "Rename 'bit_cnt' to follow convention, e.g. r_bit_cnt (reg) or w_bit_cnt (wire)."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 41,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "reg tx_valid_uart;",
+      "suggestion": "Rename 'tx_valid_uart' to follow convention, e.g. r_tx_valid_uart (reg) or w_tx_valid_uart (wire)."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 42,
+      "rule_id": "VLG026",
+      "severity": "INFO",
+      "category": "Reset",
+      "description": "Clocked always block has no reset condition — FF powers up in unknown state",
+      "snippet": "always @(posedge clk_uart) begin",
+      "suggestion": "Add a reset condition: 'if (rst) <output> <= 0; else ...'. For FPGAs you may use 'initial' as alternative, but ASIC requires explicit reset."
+    },
+    {
+      "file": "samples/uart_tx.v",
+      "line": 105,
+      "rule_id": "VLG003",
+      "severity": "INFO",
+      "category": "Style",
+      "description": "Signal name does not follow prefix convention (i_/o_/r_/w_)",
+      "snippet": "wire gated_clk;",
+      "suggestion": "Rename 'gated_clk' to follow convention, e.g. r_gated_clk (reg) or w_gated_clk (wire)."
+    }
+  ],
+  "errors": []
+}
