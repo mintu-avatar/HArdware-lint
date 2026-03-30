@@ -9,7 +9,7 @@ Usage
   python hardware_lint.py <path> [options]
 
 Arguments
-  path                File (.v/.sv) or directory to scan recursively
+    path                File (.v/.sv/.vams/.va) or directory to scan recursively
 
 Options
   --severity LEVEL    Minimum severity to report: ERROR | WARNING | INFO  (default: INFO)
@@ -20,7 +20,8 @@ Options
 
 Examples
   python hardware_lint.py rtl/
-  python hardware_lint.py top.v --severity WARNING --json report.json
+    python hardware_lint.py top.v --severity WARNING --json report.json
+    python hardware_lint.py pll_model.vams
   python hardware_lint.py rtl/ --rules
 """
 
@@ -28,6 +29,9 @@ from __future__ import annotations
 import argparse
 import sys
 import os
+
+
+_SUPPORTED_FILE_EXTS = {'.v', '.sv', '.vams', '.va'}
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -73,6 +77,7 @@ def _list_rules() -> None:
     import rules.power, rules.reset_integrity, rules.reusability
     import rules.structural_complexity, rules.verifiability
     import rules.clock_domain, rules.timing_complexity
+    import rules.ams
     from engine.rule_base import get_all_rules, Severity
 
     all_rules = get_all_rules()
@@ -109,6 +114,13 @@ def main(argv=None):
     if not os.path.exists(args.path):
         print(f"ERROR: path not found: {args.path}", file=sys.stderr)
         sys.exit(2)
+
+    if os.path.isfile(args.path):
+        ext = os.path.splitext(args.path)[1].lower()
+        if ext not in _SUPPORTED_FILE_EXTS:
+            valid = ', '.join(sorted(_SUPPORTED_FILE_EXTS))
+            print(f"ERROR: unsupported HDL extension '{ext}'. Supported: {valid}", file=sys.stderr)
+            sys.exit(2)
 
     # Disable color if requested
     if args.no_color:

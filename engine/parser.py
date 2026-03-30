@@ -108,6 +108,30 @@ _SEN_POSEDGE = re.compile(r'\bposedge\b')
 _SEN_NEGEDGE = re.compile(r'\bnegedge\b')
 _SEN_STAR    = re.compile(r'\*')
 
+# Verilog-AMS analog block start; needed to scope analog behavioral statements.
+_ANALOG_START_RE = re.compile(r'\banalog\b')
+
+# Verilog-AMS discipline declaration; needed to validate domain typing of nets.
+_DISCIPLINE_DECL_RE = re.compile(r'\bdiscipline\s+(\w+)\b')
+
+# Verilog-AMS nature declaration; needed to track potential/flow unit definitions.
+_NATURE_DECL_RE = re.compile(r'\bnature\s+(\w+)\b')
+
+# Verilog-AMS discipline body bindings (domain/potential/flow/enddiscipline).
+_DISCIPLINE_DOMAIN_RE = re.compile(r'\bdomain\s+(discrete|continuous)\b')
+_DISCIPLINE_POTENTIAL_RE = re.compile(r'\bpotential\s+(\w+)\b')
+_DISCIPLINE_FLOW_RE = re.compile(r'\bflow\s+(\w+)\b')
+_ENDDISCIPLINE_RE = re.compile(r'\benddiscipline\b')
+
+# Verilog-AMS branch declaration; needed to reason about branch-oriented contributions.
+_BRANCH_DECL_RE = re.compile(r'\bbranch\s*\(\s*([^,\)]+)\s*(?:,\s*([^\)]+)\s*)?\)\s*(\w+)\s*;')
+
+# Verilog-AMS contribution statement; captures V()/I() target and RHS expression.
+_CONTRIB_RE = re.compile(r'\b([VI])\s*\(\s*([^\)]+)\s*\)\s*<\+\s*([^;]+);')
+
+# Verilog-AMS analog operators/functions commonly associated with stability/convergence.
+_AMS_KEYWORD_CALL_RE = re.compile(r'\b(ddt|idt|absdelay|transition|slew|cross)\s*\(')
+
 
 # ---------------------------------------------------------------------------
 # Block extractor — finds balanced begin/end or single-statement body
@@ -187,6 +211,7 @@ class VerilogParser:
         self._parse_assigns(clean, ctx)
         self._parse_always(clean, ctx)
         self._parse_instances(clean, ctx)
+        self._parse_ams(clean, ctx)
 
         return ctx
 
@@ -320,4 +345,141 @@ class VerilogParser:
                     'module_type': mod_type,
                     'inst_name':   inst_name,
                     'conn_str':    conn_str,
+                })
+
+    def _parse_ams(self, lines: List[str], ctx: ParseContext):
+        """Collect lightweight Verilog-AMS constructs for AMS-specific lint rules."""
+        self._parse_analog_blocks(lines, ctx)
+        self._parse_disciplines_and_natures(lines, ctx)
+        self._parse_branches(lines, ctx)
+        self._parse_contributions(lines, ctx)
+
+    def _parse_analog_blocks(self, lines: List[str], ctx: ParseContext):
+        """
+        Extract analog block spans using begin/end depth when available,
+        with a fallback for single-statement analog forms.
+        """
+        i = 0
+        n = len(lines)
+        while i < n:
+            ln = lines[i]
+            m = _ANALOG_START_RE.search(ln)
+            if not m:
+                i += 1
+                continue
+
+            after_kw = ln[m.end():]
+            body_lines: List[str] = []
+            start_line = i + 1
+            end_i = i
+
+            if re.search(r'\bbegin\b', after_kw):
+                depth = len(re.findall(r'\bbegin\b', after_kw)) - len(re.findall(r'\bend\b', after_kw))
+                j = i + 1
+                while j < n:
+                    cur = lines[j]
+                    body_lines.append(cur)
+                    depth += len(re.findall(r'\bbegin\b', cur))
+                    depth -= len(re.findall(r'\bend\b', cur))
+                    end_i = j
+                    if depth <= 0:
+                        break
+                    j += 1
+            else:
+                if ';' in after_kw:
+                    body_lines = [after_kw]
+                    end_i = i
+                else:
+                    j = i + 1
+                    while j < n:
+                        cur = lines[j]
+                        body_lines.append(cur)
+                        end_i = j
+                        if ';' in cur:
+                            break
+                        j += 1
+
+            ctx.analog_blocks.append({
+                'start_line': start_line,
+                'end_line': end_i + 1,
+                'body_lines': body_lines,
+                'raw_line': ln,
+            })
+            i = end_i + 1
+
+    def _parse_disciplines_and_natures(self, lines: List[str], ctx: ParseContext):
+        """Parse discipline and nature declarations, including discipline bindings."""
+        i = 0
+        n = len(lines)
+        while i < n:
+            ln = lines[i]
+
+            for m in _NATURE_DECL_RE.finditer(ln):
+                ctx.natures.append({
+                    'line': i + 1,
+                    'name': m.group(1),
+                })
+
+            dm = _DISCIPLINE_DECL_RE.search(ln)
+            if dm:
+                disc_name = dm.group(1)
+                domain = None
+                potential = None
+                flow = None
+                end_i = i
+                j = i
+                while j < n:
+                    cur = lines[j]
+                    ddom = _DISCIPLINE_DOMAIN_RE.search(cur)
+                    if ddom:
+                        domain = ddom.group(1)
+                    dpot = _DISCIPLINE_POTENTIAL_RE.search(cur)
+                    if dpot:
+                        potential = dpot.group(1)
+                    dflow = _DISCIPLINE_FLOW_RE.search(cur)
+                    if dflow:
+                        flow = dflow.group(1)
+                    end_i = j
+                    if _ENDDISCIPLINE_RE.search(cur):
+                        break
+                    j += 1
+
+                ctx.disciplines.append({
+                    'line': i + 1,
+                    'end_line': end_i + 1,
+                    'name': disc_name,
+                    'domain': domain,
+                    'potential': potential,
+                    'flow': flow,
+                })
+                i = end_i + 1
+                continue
+
+            i += 1
+
+    def _parse_branches(self, lines: List[str], ctx: ParseContext):
+        """Collect branch declarations of the form: branch(node_p, node_n) br;"""
+        for i, ln in enumerate(lines):
+            for m in _BRANCH_DECL_RE.finditer(ln):
+                ctx.branches.append({
+                    'line': i + 1,
+                    'pos': m.group(1).strip(),
+                    'neg': (m.group(2) or '').strip(),
+                    'name': m.group(3).strip(),
+                })
+
+    def _parse_contributions(self, lines: List[str], ctx: ParseContext):
+        """Collect contribution statements and AMS keyword invocations."""
+        for i, ln in enumerate(lines):
+            for m in _CONTRIB_RE.finditer(ln):
+                ctx.contributions.append({
+                    'line': i + 1,
+                    'kind': m.group(1),
+                    'target': m.group(2).strip(),
+                    'expr': m.group(3).strip(),
+                })
+            for m in _AMS_KEYWORD_CALL_RE.finditer(ln):
+                ctx.ams_keywords.append({
+                    'line': i + 1,
+                    'keyword': m.group(1),
                 })

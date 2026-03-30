@@ -92,7 +92,7 @@
   function addFiles(fileListObj) {
     for (const f of fileListObj) {
       const ext = f.name.substring(f.name.lastIndexOf(".")).toLowerCase();
-      if ([".v", ".sv", ".vh", ".svh"].includes(ext)) {
+      if ([".v", ".sv", ".vh", ".svh", ".vams", ".va"].includes(ext)) {
         // Avoid duplicates
         if (!selectedFiles.some(sf => sf.name === f.name && sf.size === f.size)) {
           selectedFiles.push(f);

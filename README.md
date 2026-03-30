@@ -10,6 +10,9 @@ A SonarQube-style static analysis engine for RTL design code — catches synthes
 # Scan a single file
 python hardware_lint.py path/to/design.v
 
+# Scan a Verilog-AMS file
+python hardware_lint.py path/to/design.vams
+
 # Scan a full RTL directory recursively
 python hardware_lint.py rtl/src/
 
@@ -19,7 +22,10 @@ python hardware_lint.py rtl/ --severity WARNING
 # Also produce a JSON report for CI/dashboard integration
 python hardware_lint.py rtl/ --json report.json
 
-# List all 95 registered rules
+# Verilog-AMS scan with severity threshold
+python hardware_lint.py ams_designs/ --severity WARNING
+
+# List all 113 registered rules
 python hardware_lint.py --rules
 ```
 
@@ -62,7 +68,8 @@ Hardware-lint/
 │   ├── structural_complexity.py # VLG076–VLG080 (Structural complexity)
 │   ├── verifiability.py      # VLG081–VLG085  (Verifiability / testability)
 │   ├── clock_domain.py       # VLG086–VLG090  (Clock domain complexity)
-│   └── timing_complexity.py  # VLG091–VLG095  (Timing complexity)
+│   ├── timing_complexity.py  # VLG091–VLG095  (Timing complexity)
+│   └── ams.py                # VLG096–VLG113  (Verilog-AMS quality/safety)
 ├── reporter/
 │   ├── cli.py                # Colored terminal output
 │   └── json_report.py        # Machine-readable JSON output
@@ -78,7 +85,7 @@ Hardware-lint/
 
 ---
 
-## Rule Catalog (95 Rules)
+## Rule Catalog (113 Rules)
 
 ### Coding Style & Readability
 | Rule | Sev | Description |
@@ -259,6 +266,50 @@ Hardware-lint/
 | VLG094 | INFO | Wide mux (>8 branches, ≥16-bit output) — routing congestion |
 | VLG095 | INFO | Wide arithmetic (≥16-bit) without pipeline stage |
 
+## AMS Rule Catalog (VLG096–VLG113)
+
+### Analog Signal Integrity
+| Rule | Sev | Description |
+|------|-----|-------------|
+| VLG096 | WARNING | Contribution uses abrupt analog jump without transition/slew smoothing |
+| VLG097 | WARNING | cross() call is missing tolerance/hysteresis arguments |
+| VLG098 | WARNING | idt() integrator appears without explicit initial condition |
+
+### Discipline & Nature Compliance
+| Rule | Sev | Description |
+|------|-----|-------------|
+| VLG099 | WARNING | V()/I() accesses net that lacks explicit discipline declaration |
+| VLG100 | WARNING | Discipline declaration is missing potential or flow nature binding |
+| VLG101 | WARNING | Same net is declared under multiple disciplines |
+
+### Contribution Statement Safety
+| Rule | Sev | Description |
+|------|-----|-------------|
+| VLG102 | **ERROR** | Contribution statement appears without terminating semicolon |
+| VLG103 | WARNING | Same target receives both V() and I() contributions |
+| VLG104 | WARNING | Contribution appears inside procedural control construct |
+
+### Analog-Digital Interface
+| Rule | Sev | Description |
+|------|-----|-------------|
+| VLG105 | WARNING | V()/I() references a signal declared as logic/reg |
+| VLG106 | WARNING | cross() appears outside event control expression |
+| VLG107 | INFO | Analog boundary comparison uses hardcoded numeric threshold |
+
+### Analog Power & Convergence
+| Rule | Sev | Description |
+|------|-----|-------------|
+| VLG108 | **ERROR** | Contribution contains divide-by-(V()-V()) style singularity risk |
+| VLG109 | WARNING | Analog block has contributions but no apparent event/activity gating |
+| VLG110 | WARNING | transition() uses zero rise/fall time which can degrade convergence |
+
+### AMS Readability & Style
+| Rule | Sev | Description |
+|------|-----|-------------|
+| VLG111 | INFO | Discipline/nature declaration appears after module declaration |
+| VLG112 | INFO | Branch name is generic and not descriptive |
+| VLG113 | INFO | Analog block has no nearby explanatory comment |
+
 ---
 
 ## JSON Report Schema
@@ -321,5 +372,6 @@ class VLG096(RuleBase):
 
 - Python 3.10+
 - No external dependencies (stdlib only)
-#   H A r d w a r e - l i n t  
+#   H A r d w a r e - l i n t 
+ 
  

@@ -1,0 +1,131 @@
+// ============================================================
+// Tree-FET Device Model — Verilog-AMS
+// Based on: "Comprehensive TreeFET Modeling and Machine
+// Learning Integration for Analog and Digital Circuit
+// Applications", NIT Warangal
+//
+// Device Parameters (Lg = 12nm):
+//   Vto    = 0.3216 V
+//   Kp     = 6.739e-05 A/V^2
+//   Lambda = 0.5172 V^-1
+//   Tox    = 1.13e-09 m
+//   NSTH   = 5nm, NSWD = 23nm, IBWD = 5nm
+// ============================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+
+// ------------------------------------------------------------
+// Nature and Discipline declarations for Tree-FET nets
+// ------------------------------------------------------------
+nature Current
+    units    = "A";
+    access   = I;
+    idt_nature = Charge;
+endnature
+
+nature Voltage
+    units    = "V";
+    access   = V;
+    ddt_nature = Current;
+endnature
+
+discipline electrical
+    potential   Voltage;
+    flow        Current;
+enddiscipline
+
+// ------------------------------------------------------------
+// Tree-FET NMOS Model
+// Combines Nanosheet (NS) + FinFET topology with vertical
+// interbridge — models enhanced Weff and drive current
+// ------------------------------------------------------------
+module treefet_nmos(drain, gate, source, bulk);
+
+    // Port declarations with discipline
+    inout drain, gate, source, bulk;
+    electrical drain, gate, source, bulk;
+
+    // ---------------------------------------------------------
+    // Device parameters derived from TCAD + SPICE extraction
+    // ---------------------------------------------------------
+    parameter real Vto    = 0.3216  from [0:inf);  // Threshold voltage (V)
+    parameter real Kp     = 6.739e-5 from [0:inf); // Transconductance param (A/V^2)
+    parameter real Lambda = 0.5172  from [0:inf);  // Channel-length modulation (V^-1)
+    parameter real Tox    = 1.13e-9 from [0:inf);  // Gate oxide thickness (m)
+    parameter real Lg     = 12e-9   from [0:inf);  // Channel length (m)
+    parameter real Weff   = 200e-9  from [0:inf);  // Effective width (m)
+
+    // ---------------------------------------------------------
+    // Internal signals
+    // ---------------------------------------------------------
+    real Vgs, Vds, Vbs;
+    real Id;
+    real Vth;               // Effective threshold with body effect
+    real gamma;             // Body effect coefficient
+    real phi;               // Surface potential
+
+    // Branch declarations for current contributions
+    branch (drain, source) ds_branch;
+    branch (gate,  source) gs_branch;
+
+    analog begin
+
+        // -----------------------------------------------------
+        // Compute terminal voltages
+        // -----------------------------------------------------
+        Vgs = V(gate,  source);
+        Vds = V(drain, source);
+        Vbs = V(bulk,  source);
+
+        // -----------------------------------------------------
+        // Body effect — threshold voltage modulation
+        // phi = 0.7V (surface potential for silicon at room temp)
+        // gamma derived from Tox and doping
+        // -----------------------------------------------------
+        phi   = 0.7;
+        gamma = 0.4;
+        Vth   = Vto + gamma * (sqrt(phi - Vbs) - sqrt(phi));
+
+        // -----------------------------------------------------
+        // Drain current model — Level 1 SPICE (matches LTspice
+        // validation in paper: Vto=0.32V, Lambda=0.5172)
+        // Three regions: cutoff, linear, saturation
+        // -----------------------------------------------------
+        if (Vgs < Vth) begin
+            // Cutoff region — device off
+            Id = 0.0;
+        end
+        else if (Vds < (Vgs - Vth)) begin
+            // Linear (triode) region
+            // Id = Kp * W/L * [(Vgs-Vth)*Vds - Vds^2/2] * (1 + Lambda*Vds)
+            Id = Kp * (Weff/Lg) *
+                 ((Vgs - Vth) * Vds - (Vds * Vds) / 2.0) *
+                 (1.0 + Lambda * Vds);
+        end
+        else begin
+            // Saturation region
+            // Id = Kp/2 * W/L * (Vgs-Vth)^2 * (1 + Lambda*Vds)
+            // Lambda=0.5172 reflects non-ideal current source behavior
+            // noted in paper (high channel-length modulation)
+            Id = (Kp / 2.0) * (Weff/Lg) *
+                 (Vgs - Vth) * (Vgs - Vth) *
+                 (1.0 + Lambda * Vds);
+        end
+
+        // -----------------------------------------------------
+        // Contribute drain current to ds_branch
+        // Use transition() to prevent discontinuity at region
+        // boundaries — critical for simulator convergence
+        // -----------------------------------------------------
+        I(ds_branch) <+ transition(Id, 0, 1e-12);
+
+        // -----------------------------------------------------
+        // Gate leakage — negligible for high-k gate stack
+        // EOT = 1.13nm, modeled as near-zero leakage current
+        // -----------------------------------------------------
+        I(gs_branch) <+ 0.0;
+
+    end
+
+endmodule

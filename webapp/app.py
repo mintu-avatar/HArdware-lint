@@ -27,7 +27,7 @@ app = Flask(__name__)
 app.secret_key = os.urandom(32)
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16 MB
 
-ALLOWED_EXTENSIONS = {".v", ".sv", ".vh", ".svh"}
+ALLOWED_EXTENSIONS = {".v", ".sv", ".vh", ".svh", ".vams", ".va"}
 
 # ---------------------------------------------------------------------------
 # In-memory session store  (no DB — cleared on restart)
@@ -184,6 +184,33 @@ def _summary(bucket: dict) -> dict:
         per_file[fn][f["severity"]] += 1
         per_file[fn]["total"] += 1
 
+    # Rules validated depend on scanned file types:
+    # - AMS files (.vams/.va) run only AMS rules
+    # - RTL files run only non-AMS rules
+    # - Mixed sessions validate the union of both sets
+    ams_exts = {".vams", ".va"}
+    has_ams = False
+    has_non_ams = False
+    for fn in files:
+        ext = os.path.splitext(fn)[1].lower()
+        if ext in ams_exts:
+            has_ams = True
+        else:
+            has_non_ams = True
+
+    all_rules = get_all_rules()
+    ams_rules = sum(1 for r in all_rules if r.category == "AMS")
+    non_ams_rules = len(all_rules) - ams_rules
+
+    if has_ams and has_non_ams:
+        rules_active = len(all_rules)
+    elif has_ams:
+        rules_active = ams_rules
+    elif has_non_ams:
+        rules_active = non_ams_rules
+    else:
+        rules_active = 0
+
     return {
         "total": len(findings),
         "errors": errors,
@@ -194,7 +221,7 @@ def _summary(bucket: dict) -> dict:
         "quality_gate": "PASSED" if errors == 0 else "FAILED",
         "categories": cats,
         "per_file": per_file,
-        "rules_active": len(get_all_rules()),
+        "rules_active": rules_active,
     }
 
 

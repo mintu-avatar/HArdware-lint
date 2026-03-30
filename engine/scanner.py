@@ -33,9 +33,11 @@ import rules.structural_complexity
 import rules.verifiability
 import rules.clock_domain
 import rules.timing_complexity
+import rules.ams
 
 
-_VERILOG_EXTS = {'.v', '.sv'}
+_VERILOG_EXTS = {'.v', '.sv', '.vams', '.va'}
+_AMS_EXTS = {'.vams', '.va'}
 
 
 def _collect_files(path: str) -> List[str]:
@@ -80,7 +82,15 @@ def scan(path: str, severity_filter: str = "INFO") -> "ScanResult":
             errors.append(f"{fpath}: parse error — {exc}")
             continue
 
+        ext = os.path.splitext(fpath)[1].lower()
+        is_ams_file = ext in _AMS_EXTS
+
         for rule in rules:
+            # AMS files: run only AMS rules. RTL files: run only non-AMS rules.
+            if is_ams_file and rule.category != "AMS":
+                continue
+            if (not is_ams_file) and rule.category == "AMS":
+                continue
             try:
                 findings = rule.check(ctx)
                 for f in findings:

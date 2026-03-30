@@ -1,0 +1,103 @@
+// ============================================================
+// Tree-FET Common Source (CS) Amplifier — Verilog-AMS
+// Based on paper results (Section 2.2.3):
+//   Mid-band gain  = 18.25 dB
+//   Phase shift    = -180 degrees (inverting)
+//   Zin            = 3 kOhm  (R1||R2 = 33k||3.3k)
+//   Zout           < 100 kOhm (limited by Lambda=0.5172)
+//   fL             = lower cutoff frequency
+//   VDD            = 15V
+//   R1=33k, R2=3.3k, R3=10k, R4=100k
+//   C1=C2=C3=100uF
+// ============================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+`include "treefet_model.vams"
+
+module cs_amplifier(Vin, Vout, VDD, GND);
+
+    input  Vin;
+    output Vout;
+    inout  VDD, GND;
+
+    electrical Vin, Vout, VDD, GND;
+
+    // Internal nodes
+    electrical Vin_coupled;     // After input coupling cap C3
+    electrical gate_node;       // Gate of M1 after voltage divider
+    electrical drain_node;      // Drain of M1 before output cap
+    electrical source_node;     // Source of M1 (above R3)
+
+    // ---------------------------------------------------------
+    // Device parameters — from paper SPICE model validation
+    // ---------------------------------------------------------
+    parameter real VDD_val = 15.0;   // Supply voltage (V)
+    parameter real R1      = 33e3;   // Voltage divider top (Ohm)
+    parameter real R2      = 3.3e3;  // Voltage divider bottom (Ohm)
+    parameter real R3      = 10e3;   // Source resistor (Ohm)
+    parameter real R4      = 100e3;  // Drain load resistor (Ohm)
+    parameter real C1      = 100e-6; // Output coupling cap (F)
+    parameter real C2      = 100e-6; // Input coupling cap (F) — C3 in paper
+    parameter real Cbypass = 100e-6; // Source bypass cap C1 in paper
+
+    // ---------------------------------------------------------
+    // Tree-FET driver — Class-A CS topology
+    // Biased in saturation for linear amplification
+    // ---------------------------------------------------------
+    treefet_nmos #(
+        .Vto(0.3216),
+        .Kp(6.739e-5),
+        .Lambda(0.5172),
+        .Weff(200e-9),
+        .Lg(12e-9)
+    ) M1 (
+        .drain(drain_node),
+        .gate(gate_node),
+        .source(source_node),
+        .bulk(GND)
+    );
+
+    analog begin
+
+        // -----------------------------------------------------
+        // Voltage divider bias network
+        // Zin = R1||R2 = 33k||3.3k = ~3kOhm (matches paper)
+        // Creates stable Q-point in saturation region
+        // -----------------------------------------------------
+        V(gate_node, GND) <+ V(VDD, GND) * R2 / (R1 + R2);
+
+        // -----------------------------------------------------
+        // Input coupling capacitor C2
+        // Blocks DC, passes AC signal to gate
+        // transition() used to avoid t=0 discontinuity
+        // -----------------------------------------------------
+        I(Vin_coupled, GND) <+ C2 * ddt(V(Vin, GND));
+        V(gate_node)        <+ transition(V(Vin_coupled), 0, 1e-9);
+
+        // -----------------------------------------------------
+        // Source resistor R3
+        // Sets Q-point — bypassed by Cbypass for AC gain
+        // Without bypass: gain reduced, stability improved
+        // With bypass: full AC gain = -gm * R4 = 18.25dB
+        // -----------------------------------------------------
+        I(source_node, GND) <+ V(source_node, GND) / R3;
+        I(source_node, GND) <+ Cbypass * ddt(V(source_node, GND));
+
+        // -----------------------------------------------------
+        // Drain load resistor R4
+        // Zout < R4 due to Lambda=0.5172 (non-ideal current src)
+        // Paper notes: buffer stage needed for low-Z loads
+        // -----------------------------------------------------
+        I(drain_node, VDD)  <+ V(drain_node, VDD) / R4;
+
+        // -----------------------------------------------------
+        // Output coupling capacitor C1
+        // Blocks DC bias at drain, passes amplified AC signal
+        // 180-degree phase shift characteristic of CS topology
+        // -----------------------------------------------------
+        I(Vout, GND) <+ C1 * ddt(V(drain_node, GND));
+
+    end
+
+endmodule

@@ -1,0 +1,75 @@
+// ============================================================
+// Tree-FET Active-Load Inverter — Verilog-AMS
+// Based on paper results:
+//   TPHL  = 2.65 ps
+//   VIH   = 1V,   VIL  = 0.5V
+//   VOH   = 4.68V, VOL = 1.68V
+//   NMH   = 3.68V
+//   IAVG  = 5mA,  PAVG = 25mW
+//   VDD   = 5V
+// ============================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+`include "treefet_model.vams"
+
+module treefet_inverter(Vin, Vout, VDD, GND);
+
+    input  Vin;
+    output Vout;
+    inout  VDD, GND;
+
+    electrical Vin, Vout, VDD, GND;
+    electrical gate_load;   // Internal node: diode-connected load gate
+
+    // ---------------------------------------------------------
+    // M1 — Diode-connected load (active load)
+    // Gate tied to drain — always in saturation
+    // Mimics Fig.2 from paper: NMOS inverter with diode load
+    // ---------------------------------------------------------
+    treefet_nmos #(
+        .Vto(0.3216),
+        .Kp(6.739e-5),
+        .Lambda(0.5172),
+        .Weff(200e-9),
+        .Lg(12e-9)
+    ) M1 (
+        .drain(VDD),
+        .gate(Vout),        // Diode-connected: gate = drain
+        .source(Vout),
+        .bulk(GND)
+    );
+
+    // ---------------------------------------------------------
+    // M2 — Driver transistor
+    // Input applied to gate, drives output low when Vin > Vth
+    // ---------------------------------------------------------
+    treefet_nmos #(
+        .Vto(0.3216),
+        .Kp(6.739e-5),
+        .Lambda(0.5172),
+        .Weff(200e-9),
+        .Lg(12e-9)
+    ) M2 (
+        .drain(Vout),
+        .gate(Vin),
+        .source(GND),
+        .bulk(GND)
+    );
+
+    // ---------------------------------------------------------
+    // Analog block — power monitoring
+    // Tracks IAVG and PAVG consistent with paper values
+    // PAVG = VDD * IAVG = 5V * 5mA = 25mW
+    // ---------------------------------------------------------
+    real Idd, Pavg;
+
+    analog begin
+        // Instantaneous supply current
+        Idd  = I(VDD, Vout);
+
+        // Instantaneous power — monitor against 25mW paper value
+        Pavg = V(VDD, GND) * Idd;
+    end
+
+endmodule

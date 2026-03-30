@@ -49,8 +49,8 @@
     <div class="upload-overlay" id="uploadOverlay">
       <div class="upload-panel">
         <button class="upload-close" id="uploadClose">&times;</button>
-        <h2>Analyze Verilog / SystemVerilog</h2>
-        <p class="upload-subtitle">Drop your <code>.v</code> / <code>.sv</code> files below or click to browse</p>
+        <h2>Analyze Verilog / SystemVerilog / Verilog-AMS</h2>
+        <p class="upload-subtitle">Drop your <code>.v</code> / <code>.sv</code> / <code>.vams</code> / <code>.va</code> files below or click to browse</p>
 
         <div class="dropzone" id="dropzone">
           <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5">
@@ -62,7 +62,7 @@
           <span class="dropzone-or">or</span>
           <label class="btn-browse">
             Browse Files
-            <input type="file" id="fileInput" multiple accept=".v,.sv,.vh,.svh" hidden>
+            <input type="file" id="fileInput" multiple accept=".v,.sv,.vh,.svh,.vams,.va" hidden>
           </label>
         </div>
 
@@ -98,7 +98,7 @@
           <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/>
         </svg>
         <h2>No analysis yet</h2>
-        <p>Upload Verilog files to get started with static analysis</p>
+        <p>Upload Verilog, SystemVerilog, or Verilog-AMS files to get started with static analysis</p>
         <button class="btn-new-analysis" id="btnStartFirst">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>

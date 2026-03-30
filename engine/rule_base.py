@@ -72,6 +72,13 @@ class ParseContext:
     signal_decls:  List[Dict]       = field(default_factory=list)
     instances:     List[Dict]       = field(default_factory=list)
     parameters:    List[Dict]       = field(default_factory=list)
+    # Verilog-AMS metadata populated by parser
+    analog_blocks: List[Dict]       = field(default_factory=list)
+    disciplines:   List[Dict]       = field(default_factory=list)
+    natures:       List[Dict]       = field(default_factory=list)
+    branches:      List[Dict]       = field(default_factory=list)
+    contributions: List[Dict]       = field(default_factory=list)
+    ams_keywords:  List[Dict]       = field(default_factory=list)
 
 
 # ---------------------------------------------------------------------------

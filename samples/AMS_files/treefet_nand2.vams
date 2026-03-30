@@ -1,0 +1,83 @@
+// ============================================================
+// Tree-FET Two-Input NAND Gate — Verilog-AMS
+// Based on paper Section 2.2.2:
+//   Series-connected pull-down network of Tree-FETs
+//   Verified across 1000ms transient for all logic combos
+//   L = 12nm, W = 200nm
+//   VDD = 5V
+// ============================================================
+
+`include "disciplines.vams"
+`include "constants.vams"
+`include "treefet_model.vams"
+
+module treefet_nand2(A, B, Y, VDD, GND);
+
+    input  A, B;
+    output Y;
+    inout  VDD, GND;
+
+    electrical A, B, Y, VDD, GND;
+    electrical mid_node;    // Internal node between stacked pull-downs
+
+    // ---------------------------------------------------------
+    // M1 — Diode-connected active load
+    // Always in saturation, pulls output high when both
+    // pull-down transistors are off
+    // ---------------------------------------------------------
+    treefet_nmos #(
+        .Vto(0.3216),
+        .Kp(6.739e-5),
+        .Lambda(0.5172),
+        .Weff(400e-9),      // Wider load for drive strength
+        .Lg(12e-9)
+    ) M1 (
+        .drain(VDD),
+        .gate(Y),           // Diode-connected
+        .source(Y),
+        .bulk(GND)
+    );
+
+    // ---------------------------------------------------------
+    // M2 — Pull-down transistor A (top of stack)
+    // Series connection implements NAND logic:
+    // Y = LOW only when both A=HIGH and B=HIGH
+    // ---------------------------------------------------------
+    treefet_nmos #(
+        .Vto(0.3216),
+        .Kp(6.739e-5),
+        .Lambda(0.5172),
+        .Weff(200e-9),
+        .Lg(12e-9)
+    ) M2 (
+        .drain(Y),
+        .gate(A),
+        .source(mid_node),
+        .bulk(GND)
+    );
+
+    // ---------------------------------------------------------
+    // M3 — Pull-down transistor B (bottom of stack)
+    // Stacked under M2 — switching speed assessed under
+    // stacked-transistor conditions per paper
+    // ---------------------------------------------------------
+    treefet_nmos #(
+        .Vto(0.3216),
+        .Kp(6.739e-5),
+        .Lambda(0.5172),
+        .Weff(200e-9),
+        .Lg(12e-9)
+    ) M3 (
+        .drain(mid_node),
+        .gate(B),
+        .source(GND),
+        .bulk(GND)
+    );
+
+    analog begin
+        // No additional analog contributions needed —
+        // all behavior captured by Tree-FET device models above
+        // Output Y is purely driven by M1/M2/M3 interactions
+    end
+
+endmodule
