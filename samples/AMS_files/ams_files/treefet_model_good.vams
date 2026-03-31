@@ -1,0 +1,33 @@
+`include "disciplines.vams"
+`include "constants.vams"
+
+module treefet_model_good(drain, gate, source, bulk);
+    inout drain, gate, source, bulk;
+    electrical drain, gate, source, bulk;
+
+    parameter real kp      = 7.0e-5;
+    parameter real vto     = 0.32;
+    parameter real lambda  = 0.25;
+    parameter real tr_edge = 1e-12;
+    parameter real tf_edge = 1e-12;
+    parameter real vth_evt = 0.40;
+    parameter real tol_x   = 1e-4;
+
+    real vgs;
+    real vds;
+    real id_lin;
+
+    branch (drain, source) br_device;
+
+    // TreeFET compact behavior with event control and smooth branch driving.
+    analog begin
+        @(cross(V(gate, source) - vth_evt, +1, tol_x)) ;
+
+        vgs = V(gate, source);
+        vds = V(drain, source);
+        id_lin = kp * (vgs - vto) * vds * (1.0 + lambda * abs(vds));
+
+        I(br_device) <+ transition(id_lin, 0, tr_edge, tf_edge);
+        I(gate, source) <+ transition(0.0, 0, tr_edge, tf_edge);
+    end
+endmodule

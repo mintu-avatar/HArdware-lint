@@ -1,0 +1,27 @@
+`include "disciplines.vams"
+`include "constants.vams"
+
+module treefet_model_bad(drain, gate, source, bulk, mode);
+    inout drain, gate, source, bulk;
+    input logic mode;
+    electrical drain, gate, source, bulk;
+    electrical int_node;
+
+    branch (drain, source) br1;
+
+    real id;
+
+    analog begin
+        if (V(gate, source) > 0.5) I(br1) <+ V(gate, source);
+        id = cross(V(gate, source) - 0.3, +1);
+        V(mode) <+ 0.9;
+        I(int_node, source) <+ idt(V(gate, source));
+        I(drain, source) <+ transition(id, 0, 0, 0);
+        I(br1) <+ 1e-3
+    end
+
+    nature localvolt
+        units = "V";
+        access = V;
+    endnature
+endmodule

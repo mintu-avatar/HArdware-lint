@@ -1,0 +1,34 @@
+`include "disciplines.vams"
+`include "constants.vams"
+
+module cs_amplifier_good(vin, vout, vdd, vss);
+    inout vin, vout, vdd, vss;
+    electrical vin, vout, vdd, vss;
+    electrical gate_node, drain_node, source_node;
+
+    parameter real gm      = 2e-3;
+    parameter real rd      = 8e3;
+    parameter real rs      = 1e3;
+    parameter real vth_if  = 0.6;
+    parameter real tr_edge = 1e-9;
+    parameter real tf_edge = 1e-9;
+    parameter real tol_x   = 1e-3;
+
+    branch (drain_node, source_node) br_drain_path;
+
+    // Analog core with explicit event gating and smoothed contributions.
+    analog begin
+        @(cross(V(vin, vss) - vth_if, +1, tol_x)) ;
+
+        // Smoothed pseudo common-source transconductance path.
+        I(br_drain_path) <+ transition(gm * V(gate_node, source_node), 0, tr_edge, tf_edge);
+
+        // Bias and load equations are also smoothed to satisfy strict continuity checks.
+        I(gate_node, vss)  <+ transition(V(gate_node, vss) / 1e9, 0, tr_edge, tf_edge);
+        I(source_node, vss) <+ transition(V(source_node, vss) / rs, 0, tr_edge, tf_edge);
+        I(drain_node, vdd) <+ transition(V(drain_node, vdd) / rd, 0, tr_edge, tf_edge);
+
+        // Output relation through a smoothed controlled contribution.
+        V(vout, vss) <+ transition(V(drain_node, vss), 0, tr_edge, tf_edge);
+    end
+endmodule

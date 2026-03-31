@@ -1,0 +1,23 @@
+`include "disciplines.vams"
+`include "constants.vams"
+
+module cs_amplifier_bad(vin, vout, vdd, vss, ctrl);
+    inout vin, vout, vdd, vss;
+    input logic ctrl;
+    electrical vin, vout, vdd, vss;
+    electrical n1, n2;
+
+    branch (n1, n2) b1;
+
+    parameter real gm = 3e-3;
+
+    analog begin
+        if (V(vin, vss) > 0.5) I(n1, vss) <+ gm * V(vin, vss);
+        @(cross(V(vin, vss) - 0.45, +1)) ;
+        V(ctrl) <+ 1.2;
+        V(n2, vss) <+ transition(V(vin, vss), 0, 0, 0);
+        I(n1, n2) <+ gm / (V(n1, vss) - V(n2, vss));
+        I(b1) <+ idt(V(vin, vss));
+        I(vout, vss) <+ V(n1, vss)
+    end
+endmodule
